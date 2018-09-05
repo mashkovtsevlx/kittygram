@@ -223,6 +223,14 @@
         float: left;
 
     }
+    #manualimg {
+
+        width: 100%;
+        margin-top: 23px;
+
+        float: left;
+
+    }
 
 
 
@@ -246,7 +254,8 @@
 
         overflow-y: scroll;
 
-        height: calc(100% - 51px);
+        /*height: calc(100% - 51px);*/
+        margin-bottom: 40px;
 
         display: none;
 
@@ -276,11 +285,15 @@
 
 
     #vid {
-
-        width: 54%;
-
+        width: 45%;
         float: left;
+        margin-top: 125px;
+    }
 
+    #manualimg {
+        width: 45%;
+        float: left;
+        margin-top: 25px;
     }
 
 
@@ -301,7 +314,7 @@
 
         overflow-y: scroll;
 
-        margin-left: 5%;
+        margin-left: 12%;
 
         max-height: 80vh;
 

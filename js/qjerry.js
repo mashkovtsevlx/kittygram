@@ -1,65 +1,27 @@
 var qJerry = function (selector) {
-
-
     this.selector = selector || null;
-
-
     this.element = null;
-
-
 };
 
-
 qJerry.prototype.init = function () {
-
-
     switch (this.selector[0]) {
-
-
         case '<':
-
-
             var matches = this.selector.match(/<([\w-]*)>/);
-
-
             if (matches === null || matches === undefined) {
-
-
                 throw 'Invalid Selector / Node';
-
-
                 return false;
-
-
             }
-
-
             var nodeName = matches[0].replace('<', '').replace('>', '');
-
-
             this.element = document.createElement(nodeName);
-
-
             break;
-
-
         default:
-
-
             this.element = document.querySelector(this.selector);
-
-
     }
-
-
 };
 
 
 qJerry.prototype.toggleClass = function (name, selector) {
-
     this.element.classList.toggle(name);
-
-
 }
 
 
@@ -86,18 +48,11 @@ qJerry.prototype.outerWidth = function (cond) {
 }
 
 qJerry.prototype.text = function (value) {
-
     if (!value) {
-
         return this.element.textContent;
-
     } else {
-
         this.element.textContent = value;
-
     }
-
-
 }
 
 qJerry.prototype.attr = function (prop, value) {

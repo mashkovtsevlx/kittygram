@@ -69,7 +69,6 @@ class Controller_Capture extends Controller
     {
 
         $msg = 'fuck0';
-
         if (isset($_POST) && isset($_POST['src']) && isset($_SESSION["session_username"])) {
 
             $data = explode(',', $_POST['src']);

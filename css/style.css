@@ -974,6 +974,20 @@ form {
 /* Video
 -----------------------------------------------------------------------------*/
 
+#manual {
+    position: absolute;
+    display: none;
+    top: 100px;
+    left: 0;
+}
+
+#manualimg {
+    position: absolute;
+    display: none;
+    top: 100px;
+    left: 0;
+}
+
 #vid {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);

@@ -46,6 +46,28 @@ class Model_Main extends Model
                 {
                     $pic['like'] = '/images/ico/like.png';
                 }
+                $taken = $db->prepare("SELECT id FROM likes WHERE photo_id = :photo_id");
+                $taken->execute(array('photo_id' => $photo['id']));
+                $pic['likedtimes'] = $taken->rowCount();
+                $taken = $db->prepare("SELECT user_id, comment FROM comments WHERE photo_id = :photo_id");
+                $taken->execute(array('photo_id' => $photo['id']));
+                while($comm = $taken->fetch(PDO::FETCH_ASSOC))
+                {
+                    $comment = array();
+                    $comment['comment'] = $comm['comment'];
+                    $u = $db->prepare("SELECT username, email FROM users WHERE id = :user_id");
+                    $u->execute(array('user_id' => $comm['user_id']));
+                    $u = $u->fetch(PDO::FETCH_ASSOC);
+                    if ($u['username'] != '' && $u['username'] != NULL)
+                    {
+                        $comment['username'] = $u['username'];
+                    }
+                    else
+                    {
+                        $comment['username'] = $u['email'];
+                    }
+                    $pic['comments'][] = $comment;
+                }
                 $result[] = $pic;
             }
         }

@@ -28,6 +28,9 @@ array_shift($masks_list);
 <video id="vid" autoplay="" muted="" playsinline=""></video>
 
 <img class="img" style="display: none"/>
+<img id="manualimg" />
+
+<input type="file" id="manual" name="manual" accept="image/png, image/jpeg" />
 
 <div class="myphotos">
 
