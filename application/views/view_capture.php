@@ -30,7 +30,7 @@ array_shift($masks_list);
 <img class="img" style="display: none"/>
 <img id="manualimg" />
 
-<input type="file" id="manual" name="manual" accept="image/png, image/jpeg" />
+<input type="file" id="manual" name="manual" accept="image/*" />
 
 <div class="myphotos">
 
