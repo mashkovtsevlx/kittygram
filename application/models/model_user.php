@@ -52,6 +52,51 @@ class Model_User extends Model
         return '<span class="badge badge-danger">This email is already registered</span>';
     }
 
+    public function forgot($email, $password, $activation)
+    {
+        $db = Db::getInstance();
+        $emails_query = $db->prepare("SELECT id FROM users WHERE email = :email");
+        $emails_query->execute(array(':email' => $email));
+        if ($emails_query->rowCount() > 0)
+        {
+            $user_query = $db->prepare("INSERT INTO forgot(email,password,activation) VALUES(:email, :password, :activation)");
+            $user_query->execute(array(':email' => $email, ':password' => $password, ':activation' => $activation));
+            $to=$email;
+            $subject="Kittygram password change confirmation";
+            $body='Hi! <br/> <br/>Please, confirm your password change using a link below <br/> <br/> <a href="kittygram.pp.ua/user/activation_forgot/?code='.$activation.'">kittygram.pp.ua/activation_forgot/?code='.$activation.'</a>';
+            
+            Send_Mail($to,$subject,$body);
+            return '<span class="badge badge-success">Sucessfully sent a request. Check your email</span>';  
+        }
+        return '<span class="badge badge-danger">This user does not exist</span>';
+    }
+
+    public function activation_forgot($code)
+    {
+        $db = Db::getInstance();
+        $codes_query = $db->prepare("SELECT email, password FROM forgot WHERE activation = :code");
+        $codes_query->execute(array(':code' => $code));
+        $user = $codes_query->fetch(PDO::FETCH_ASSOC);
+        if ($codes_query->rowCount() > 0)
+        {
+            $user_query = $db->prepare("SELECT id FROM users WHERE email = :email");
+            $user_query->execute(array(':email' => $user['email']));
+            if ($user_query->rowCount() == 1)
+            {
+                $update_query = $db->prepare("UPDATE users SET password = :password WHERE email = :email");
+                $update_query->execute(array(':password' => $user['password'], ':email' => $user['email']));
+                $update_query = $db->prepare("DELETE FROM forgot WHERE activation = :code");
+                $update_query->execute(array(':code' => $code));
+                return "Your account password changed sucessfully. You may log in now";
+            }
+            else
+            {
+                return "This code is expired";
+            }
+        }
+        return "Not valid activation code";
+    }
+
     public function activation($code)
     {
         $db = Db::getInstance();

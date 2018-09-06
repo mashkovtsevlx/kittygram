@@ -55,9 +55,10 @@
                     <label>Password </label>
                     <input type="password" name="password" />
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 0">
                     <button type="button" class="btn btn-primary" onclick="login()">LogIn</button>
                     <button type="button" style="float: right" class="btn btn-optional" onclick="$('.modal-login').toggleModal('.modal-signup')">SignUp ></button>
+                    <br /><br /><a onclick="$('.modal-login').toggleModal('.modal-forgot')"><small>Forgot password</small></a>
                 </div>
             </form>
         </div>
@@ -88,6 +89,37 @@
                 <div class="form-group">
                     <button type="button" class="btn btn-primary" onclick="signup()">Sign Up</button>
                     <button type="button" style="float: right" class="btn btn-optional" onclick="$('.modal-signup').toggleModal('.modal-login')">Login ></button>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+    <div class="modal-opt modal-forgot hidden">
+        <div class="modal-header">
+            <h5>Forgot Password</h5>
+            <button type="button" class="close" onclick="$('.modal-signup').toggleModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-content">
+            <form class="form-forgot">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" name="email" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" name="password" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label>Repeat New Password</label>
+                    <input type="password" name="re_password" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" onclick="forgot()">Send me reinitalize e-mail</button><br /><br /><br /><br />
+                    <button type="button" style="" class="btn btn-optional" onclick="$('.modal-forgot').toggleModal('.modal-login')">Login ></button>
+                    <button type="button" style="float: right" class="btn btn-optional" onclick="$('.modal-forgot').toggleModal('.modal-signup')">Sign Up ></button>
                 </div>
             </form>
         </div>

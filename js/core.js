@@ -36,6 +36,23 @@ function login() {
         1, 1, true);
 }
 
+function forgot() {
+    var email = $('.form-forgot').element.elements.namedItem("email").value;
+    var password = $('.form-forgot').element.elements.namedItem("password").value;
+    var re_password = $('.form-forgot').element.elements.namedItem("re_password").value;
+    var data = {};
+    data['email'] = email;
+    data['password'] = password;
+    data['re_password'] = re_password;
+    $('.form-forgot').ajax('POST', '/user/forgot', data,
+        function (request) {
+            var resp = request.responseText;
+            $('.modal-forgot .modal-footer').element.innerHTML = resp;
+            document.body.style.cursor = 'default';
+        },
+        1, 1, true);
+}
+
 function settings()
 {
     var username = $('.form-settings').element.elements.namedItem("username").value;

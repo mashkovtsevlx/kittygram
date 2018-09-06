@@ -54,6 +54,39 @@ class Controller_User extends Controller
 		}
 		echo $msg;
     }
+
+    function action_forgot()
+	{
+		$msg = '<span class="badge badge-danger">Please, check your credentials and try again<span>';
+		if (!empty($_POST['email']) && isset($_POST['email']) && !empty($_POST['password']) && isset($_POST['password']) && !empty($_POST['re_password']) && isset($_POST['re_password']) && $_POST['re_password'] === $_POST['password'])
+		{
+			$email=$_POST['email'];
+            $password=$_POST['password'];
+            if(strlen($password) < 8)
+                $msg = '<span class="badge badge-danger">Password must consist at least of 8 chars</span>';
+            else
+            {
+                $mail_regex = '/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/';
+                $password=hash('whirlpool', $password);
+                $activation=hash('whirlpool', $email.time());
+                $msg = $this->model->forgot($email, $password, $activation);
+            }
+		}
+		echo $msg;
+    }
+
+    function action_activation_forgot() {
+        if(!empty($_GET['code']) && isset($_GET['code']))
+        {
+            $code = $_GET['code'];
+            $msg = $this->model->activation_forgot($code);
+            $this->view->generate('view_user.php', 'view_template.php', $msg);
+        }
+        else
+        {
+            Route::ErrorPage404();
+        }
+    }
     
     function action_activation()
     {

@@ -67,7 +67,7 @@ class Model_Main extends Model
         if (isset($_SESSION["session_username"]))
             $loggedin = 1;
         else
-            $loggedin = 1;
+            $loggedin = 0;
         $complete['loggedin'] = $loggedin;
         $complete['data'] = $result;
         echo(json_encode($complete));
