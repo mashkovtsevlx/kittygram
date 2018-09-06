@@ -7,7 +7,34 @@ class Model_Capture extends Model
     {
         $this->page = $page;
     }
-    public function save($source, $email, $mask, $height)
+
+    private function imageflip(&$image, $x = 0, $y = 0, $width = null, $height = null)
+    {
+        if ($width  < 1) $width  = imagesx($image);
+        if ($height < 1) $height = imagesy($image);
+        // Truecolor provides better results, if possible.
+        if (function_exists('imageistruecolor') && imageistruecolor($image))
+        {
+            $tmp = imagecreatetruecolor(1, $height);
+        }
+        else
+        {
+            $tmp = imagecreate(1, $height);
+        }
+        $x2 = $x + $width - 1;
+        for ($i = (int) floor(($width - 1) / 2); $i >= 0; $i--)
+        {
+            // Backup right stripe.
+            imagecopy($tmp,   $image, 0,        0,  $x2 - $i, $y, 1, $height);
+            // Copy left stripe to the right.
+            imagecopy($image, $image, $x2 - $i, $y, $x + $i,  $y, 1, $height);
+            // Copy backuped right stripe to the left.
+            imagecopy($image, $tmp,   $x + $i,  $y, 0,        0,  1, $height);
+        }
+        imagedestroy($tmp);
+        return true;
+    }
+    public function save($source, $email, $mask, $height, $facingmode)
     {
         date_default_timezone_set('Europe/Kiev');
         $data = base64_decode($source);
@@ -25,6 +52,12 @@ class Model_Capture extends Model
                     break;
             }
             file_put_contents("upload/userimage/" . $i . ".png", $data);
+            if ($facingmode === 'user')
+            {
+                $image_pre = imagecreatefrompng('upload/userimage/'.$i.'.png');
+                $this->imageflip($image_pre);
+                imagepng($image_pre, 'upload/userimage/'.$i.'.png');
+            }
             if ($mask != null)
             {
                 $dimensions = getimagesize("upload/userimage/" . $i . ".png");

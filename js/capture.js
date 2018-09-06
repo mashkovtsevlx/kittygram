@@ -24,17 +24,13 @@ navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
 
 $('#manual').element.addEventListener('change', function() {
     var file = $('#manual').element.files[0];
-    alert(file);
     var reader = new FileReader();
     reader.addEventListener("load", function () {
         var counter = 0;
-        alert(reader.result);
         $("#manualimg").element.setAttribute('src', reader.result);
         $("#manualimg").css('display', 'block');
         setTimeout(function(){
-            console.log($("#manualimg").element.offsetHeight);
             var ratio = $("#manualimg").outerHeight() / $("#manualimg").outerWidth();
-            console.log(ratio);
             var basewidth = 600;
             var baseheight = basewidth * ratio;
             if (baseheight != 0 && basewidth != 0)
@@ -48,7 +44,6 @@ $('#manual').element.addEventListener('change', function() {
             canvas.height = baseheight;
             context = canvas.getContext('2d');
             context.drawImage($("#manualimg").element, 0, 0, basewidth, baseheight);
-            console.log(canvas.toDataURL("image/png"));
         }, 1000);
     }, false);
     if (file) {
@@ -86,8 +81,6 @@ $(".take_shoot").element.addEventListener('click', function () {
         data['maskheight'] = videoavailable ? $('#selected_mask').outerHeight() : $('#selected_mask').outerHeight() / $('#manualimg').outerHeight() * 400;
         console.log(data['maskheight']);
     }
-    alert(videoavailable);
-    alert(manualimageready);
     if (videoavailable == true) {
         var context;
         var width = video.offsetWidth,
@@ -99,6 +92,7 @@ $(".take_shoot").element.addEventListener('click', function () {
         context.drawImage(video, 0, 0, width, height);
         $(".img").element.setAttribute('src', canvas.toDataURL("image/png"));
         data['src'] = canvas.toDataURL("image/png");
+        data['facingmode'] = facingMode;
         $('.take_shoot').ajax('POST', '/capture/save', data,
         function (request) {
             var resp = request.responseText;
@@ -138,7 +132,7 @@ $(".take_shoot").element.addEventListener('click', function () {
 function select_mask(name) {
     mask = $('#selected_mask');
     vid = videoavailable ? $('#vid') : $('#manualimg');
-    gap = videoavailable ? 100 : 125;
+    gap = 125;
     mask.attr('src', '../../images/masks/' + name);
     mask.css('height', vid.outerHeight() / 2 + 'px');
     mask.css('display', 'block');
@@ -148,7 +142,6 @@ function select_mask(name) {
 }
 
 function deselect_mask() {
-    console.log('works');
     mask.attr('data-val', '0');
     $('#selected_mask').css('display', 'none');
 }

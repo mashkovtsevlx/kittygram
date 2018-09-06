@@ -1,9 +1,7 @@
 <?php
 
 class Controller_Test extends Controller
-
 {
-
     function __construct()
 	{
         $this->model = new Model_Test();
