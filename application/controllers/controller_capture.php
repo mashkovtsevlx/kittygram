@@ -42,7 +42,7 @@ class Controller_Capture extends Controller
 
         } else {
 
-            $this->view->generate('view_capture.php', 'view_template.php');
+            header('Location: /');
 
         }
 

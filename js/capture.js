@@ -82,7 +82,8 @@ $(".take_shoot").element.addEventListener('click', function () {
     var data = {};
     if ($('#selected_mask').attr('data-val') === '1') {
         data['mask'] = $('#selected_mask').element.src;
-        data['maskheight'] = $('#selected_mask').outerHeight() / $('#manualimg').outerHeight() * 400;
+        
+        data['maskheight'] = videoavailable ? $('#selected_mask').outerHeight() : $('#selected_mask').outerHeight() / $('#manualimg').outerHeight() * 400;
         console.log(data['maskheight']);
     }
     alert(videoavailable);
@@ -137,12 +138,13 @@ $(".take_shoot").element.addEventListener('click', function () {
 function select_mask(name) {
     mask = $('#selected_mask');
     vid = videoavailable ? $('#vid') : $('#manualimg');
+    gap = videoavailable ? 100 : 125;
     mask.attr('src', '../../images/masks/' + name);
     mask.css('height', vid.outerHeight() / 2 + 'px');
     mask.css('display', 'block');
     mask.attr('data-val', '1');
     mask.css('left', (vid.outerWidth() / 2 - mask.outerWidth() / 2) + 'px');
-    mask.css('top', (vid.outerHeight() / 2 - mask.outerHeight() / 2 + 125) + 'px');
+    mask.css('top', (vid.outerHeight() / 2 - mask.outerHeight() / 2 + gap) + 'px');
 }
 
 function deselect_mask() {

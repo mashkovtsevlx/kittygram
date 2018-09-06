@@ -124,6 +124,10 @@
                     <input type="password" name="re_password" />
                 </div>
                 <div class="form-group">
+                    <label style="margin-left: 5px">Send me notifications</label>
+                    <input type="checkbox" name="notifications" style="width: auto; float: left;" <?php if (isset($page) && isset($page['notifications']) && $page['notifications'] === '1') {echo ('checked="checked"');} ?> />
+                </div>
+                <div class="form-group">
                     <button type="button" class="btn btn-primary" onclick="settings()">Save</button>
                 </div>
             </form>

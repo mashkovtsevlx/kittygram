@@ -18,7 +18,7 @@
 
             $db = Db::getInstance();
 
-            $query = $db->prepare("SELECT email, username, userpic FROM users WHERE email = :email");
+            $query = $db->prepare("SELECT email, username, userpic, notifications FROM users WHERE email = :email");
 
             $query->execute(array(':email' => $email));
 

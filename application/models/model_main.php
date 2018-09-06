@@ -23,7 +23,7 @@ class Model_Main extends Model
         $db = Db::getInstance();
         $l = (int)$limit;
         $s = (int)$start;
-        $query = $db->prepare("SELECT * FROM photos Limit ".$s.", ".$l);
+        $query = $db->prepare("SELECT * FROM photos ORDER BY id DESC Limit ".$s.", ".$l);
         $query->execute();
         $result = array();
         if ($query->rowCount() > 0) {
@@ -33,8 +33,11 @@ class Model_Main extends Model
                 $taken = $db->prepare("SELECT email, username, userpic FROM users WHERE id = :user_id");
                 $taken->execute(array(':user_id' => $photo['user_id']));
                 $taken = $taken->fetch(PDO::FETCH_ASSOC);
-                $pic['username'] = $taken['username'] === '' ? $taken['username'] : $taken['email'];
-                $pic['userpic'] = $taken['userpic'];
+                $pic['username'] = $taken['username'] === '' ? $taken['email'] : $taken['username'];
+                if ($taken['userpic'] === null || $taken['userpic'] === '')
+                    $pic['userpic'] = 'userpic.png';
+                else
+                    $pic['userpic'] = $taken['userpic'];
                 $pic['name']['id'] = $photo['id'];
                 $pic['name']['name'] = $photo['name'];
                 $taken = $db->prepare("SELECT id FROM likes WHERE photo_id = :photo_id AND user_id = :user_id");
