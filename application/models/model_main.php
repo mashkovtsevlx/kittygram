@@ -23,7 +23,10 @@ class Model_Main extends Model
                 $taken = $db->prepare("SELECT email, username, userpic FROM users WHERE id = :user_id");
                 $taken->execute(array(':user_id' => $photo['user_id']));
                 $taken = $taken->fetch(PDO::FETCH_ASSOC);
-                $pic['username'] = $taken['username'] === '' ? $taken['email'] : $taken['username'];
+                if ($taken['username'] === '' || $taken['username'] === null)
+                    $pic['username'] = $taken['email'];
+                else
+                    $pic['username'] = $taken['username'];
                 if ($taken['userpic'] === null || $taken['userpic'] === '')
                     $pic['userpic'] = 'userpic.png';
                 else

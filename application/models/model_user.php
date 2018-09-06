@@ -44,7 +44,7 @@ class Model_User extends Model
             $user_query->execute(array(':email' => $email, ':password' => $password, ':activation' => $activation));
             $to=$email;
             $subject="Email Confirmation";
-            $body='Hi! <br/> <br/> Please, confirm your email using a link below <br/> <br/> <a href="kittygram.pp.ua/user/activation/?code='.$activation.'">kittygram.pp.ua/activation/?code='.$activation.'</a>';
+            $body='Hi! <br/> <br/> Please, confirm your email using a link below <br/> <br/> <a href="kittygram.pp.ua/user/activation/?code='.$activation.'">kittygram.pp.ua/user/activation/?code='.$activation.'</a>';
             
             Send_Mail($to,$subject,$body);
             return '<span class="badge badge-success">Sucessfully signed up. Please, check your email</span>';  

@@ -13,7 +13,7 @@ array_shift($masks_list);
     <?php
     foreach($masks_list as $mask) {
         if (strpos($mask, '.png'))
-            echo '<img src="../../images/masks/' . $mask . '" alt="hey" onclick="select_mask(\'' . $mask . '\')" />';
+            echo '<img src="../../images/masks/' . $mask . '?v=1.0.'.$num.'" alt="hey" onclick="select_mask(\'' . $mask . '\')" />';
     }
     ?>
 </div>

@@ -25,7 +25,6 @@ function login() {
         function (request) {
             var resp = request.responseText.trim();
             document.body.style.cursor = 'default';
-            console.log('Response: ', resp);
             if (resp.length <= 4)
                 window.location.replace("/");
             else
@@ -61,7 +60,6 @@ function settings()
     var new_password = $('.form-settings').element.elements.namedItem("new_password").value;
     var re_password = $('.form-settings').element.elements.namedItem("re_password").value;
     var notifications = $('.form-settings').element.elements.namedItem("notifications").checked ? '1' : '0';
-    alert(notifications);
     var data = {};
     data['email'] = email;
     data['password'] = password;
@@ -125,7 +123,7 @@ function send_comment(id) {
     $('.myphotos').ajax('POST', '/capture/comment', data,
         function (request) {
             var resp = request.responseText;
-            $('.post-comments').append('<div class="comment"><span class="comment-author">' + resp + ':</span><span class="comment-text">' + data['comment'] + '</span></div>');
+            $('.post[data-val="' + id + '"] .post-comments').append('<div class="comment"><span class="comment-author">' + resp + ':</span><span class="comment-text">' + data['comment'] + '</span></div>');
             document.body.style.cursor = 'default';
         }, 1, 1, true);
 }
