@@ -6,6 +6,25 @@
 
     {
 
+        public function getUserById($id)
+        {
+            $db = Db::getInstance();
+            $query = $db->prepare('SELECT email, activation, status, username, userpic, notifications FROM users WHERE id = :id');
+            $query->execute(array(':id' => $id));
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            return ($result);
+        }
+
+        public function getUserByPhotoId($id)
+        {
+            $db = Db::getInstance();
+            $query = $db->prepare('SELECT user_id FROM photos WHERE id = :id');
+            $query->execute(array(':id' => $id));
+            $user = $query->fetch(PDO::FETCH_ASSOC);
+            $result = $this->getUserById($user['user_id']);
+            return($result);
+        }
+
         public function get_data()
 
         {

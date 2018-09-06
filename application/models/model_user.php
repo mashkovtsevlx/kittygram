@@ -74,7 +74,7 @@ class Model_User extends Model
         }
         return "Not valid activation code";
     }
-    public function settings($email, $password, $new_password, $username, $oldemail, $activation)
+    public function settings($email, $password, $new_password, $username, $oldemail, $activation, $notifications)
     {
         $db = Db::getInstance();
         $status = 0;
@@ -90,8 +90,8 @@ class Model_User extends Model
                 $query->execute(array(':oldemail' => $email));
                 if ($query->rowCount() < 1 || $status == 1)
                 {
-                    $query = $db->prepare("UPDATE users SET email = :email, password = :new_password, username = :username, activation = :activation, status = :status WHERE email = :oldemail");
-                    $query->execute(array(':email' => $email, ':new_password' => $new_password, ':username' => $username, ':activation' => $activation, ':oldemail' => $oldemail, ':status' => $status));
+                    $query = $db->prepare("UPDATE users SET email = :email, password = :new_password, username = :username, activation = :activation, status = :status, notifications = :notifications WHERE email = :oldemail");
+                    $query->execute(array(':email' => $email, ':new_password' => $new_password, ':username' => $username, ':activation' => $activation, ':oldemail' => $oldemail, ':status' => $status, ':notifications' => $notifications));
                     if ($status == 0)
                     {
                         $to=$email;
@@ -109,7 +109,7 @@ class Model_User extends Model
                     return '<span class="badge badge-success">This email already registered</span>';
             }
             else
-                return '<span class="badge badge-success">Old pass wrong. Try again</span>'.$password." ".$result['password'];  
+                return '<span class="badge badge-danger">Old pass wrong. Try again</span>';
         }
         return '<span class="badge badge-danger">User does not exist</span>';
     }

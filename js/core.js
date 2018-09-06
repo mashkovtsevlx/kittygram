@@ -43,12 +43,15 @@ function settings()
     var password = $('.form-settings').element.elements.namedItem("password").value;
     var new_password = $('.form-settings').element.elements.namedItem("new_password").value;
     var re_password = $('.form-settings').element.elements.namedItem("re_password").value;
+    var notifications = $('.form-settings').element.elements.namedItem("notifications").checked ? '1' : '0';
+    alert(notifications);
     var data = {};
     data['email'] = email;
     data['password'] = password;
     data['username'] = username;
     data['new_password'] = new_password;
     data['re_password'] = re_password;
+    data['notifications'] = notifications;
     $('.form-login').ajax('POST', '/user/settings', data,
         function (request) {
             var resp = request.responseText;

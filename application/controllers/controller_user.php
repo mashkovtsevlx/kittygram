@@ -69,20 +69,21 @@ class Controller_User extends Controller
         $msg = '<span class="badge badge-danger">Please, check your credentials and try again<span>';
         if (!isset($_SESSION["session_username"]))
             $msg = "fuck";
-		if (!empty($_POST['email']) && isset($_POST['email']) && !empty($_POST['new_password']) && isset($_POST['new_password']) && !empty($_POST['password']) && isset($_POST['password']) && !empty($_POST['re_password']) && isset($_POST['re_password']) && $_POST['re_password'] === $_POST['new_password'] && !empty($_POST['username']) && isset($_POST['username']) && isset($_SESSION["session_username"]))
+		if (isset($_POST['notifications']) && !empty($_POST['email']) && isset($_POST['email']) && !empty($_POST['new_password']) && isset($_POST['new_password']) && !empty($_POST['password']) && isset($_POST['password']) && !empty($_POST['re_password']) && isset($_POST['re_password']) && $_POST['re_password'] === $_POST['new_password'] && !empty($_POST['username']) && isset($_POST['username']) && isset($_SESSION["session_username"]))
 		{
 			$email = $_POST['email'];
             $password = $_POST['password'];
             $username = $_POST['username'];
             $oldemail = $_SESSION["session_username"];
             $new_password = $_POST['new_password'];
+            $notifications = $_POST['notifications'];
             $activation=hash('whirlpool', $email.time());
 			$mail_regex = '/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/';
 			if(preg_match($mail_regex, $email))
 			{ 
                 $password=hash('whirlpool', $password);
                 $new_password=hash('whirlpool', $new_password);
-                $msg = $this->model->settings($email, $password, $new_password, $username, $oldemail, $activation);
+                $msg = $this->model->settings($email, $password, $new_password, $username, $oldemail, $activation, $notifications);
 			}
 		}
 		echo $msg;
