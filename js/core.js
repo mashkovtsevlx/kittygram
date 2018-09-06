@@ -132,6 +132,19 @@ function likeit(id) {
         }, 1, 1, true);
 }
 
+function deleteit(id) {
+    var data = {};
+    data['id'] = id;
+    $('.myphotos').ajax('POST', '/capture/delete', data,
+        function (request) {
+            var resp = request.responseText.trim();
+            if (resp === '1') {
+                $('.post[data-val="' + id + '"]').remove();
+            }
+            document.body.style.cursor = 'default';
+        }, 1, 1, true);
+}
+
 function makemain(id) {
     var data = {};
     data['id'] = id;

@@ -85,6 +85,16 @@ class Controller_Capture extends Controller
         }
     }
 
+    function action_delete()
+    {
+        if (isset($_SESSION["session_username"]) && isset($_POST) && isset($_POST['id'])) {
+            $delete = $this->model->delete($_SESSION["session_username"], $_POST['id']);
+            echo $delete;
+        } else {
+            echo '0';
+        }
+    }
+
     function action_makemain()
     {
         if (isset($_SESSION["session_username"]) && isset($_POST) && isset($_POST['id'])) {

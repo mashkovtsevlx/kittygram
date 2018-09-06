@@ -14,6 +14,7 @@ class Model_Main extends Model
         $s = (int)$start;
         $query = $db->prepare("SELECT * FROM photos ORDER BY id DESC Limit ".$s.", ".$l);
         $query->execute();
+        $complete = array();
         $result = array();
         if ($query->rowCount() > 0) {
             while ($photo = $query->fetch(PDO::FETCH_ASSOC))
@@ -63,7 +64,13 @@ class Model_Main extends Model
                 $result[] = $pic;
             }
         }
-        echo(json_encode($result));
+        if (isset($_SESSION["session_username"]))
+            $loggedin = 1;
+        else
+            $loggedin = 1;
+        $complete['loggedin'] = $loggedin;
+        $complete['data'] = $result;
+        echo(json_encode($complete));
     }
 
 

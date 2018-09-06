@@ -38,14 +38,19 @@ class Controller_User extends Controller
 		if (!empty($_POST['email']) && isset($_POST['email']) && !empty($_POST['password']) && isset($_POST['password']) && !empty($_POST['re_password']) && isset($_POST['re_password']) && $_POST['re_password'] === $_POST['password'])
 		{
 			$email=$_POST['email'];
-			$password=$_POST['password'];
-			$mail_regex = '/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/';
-			if(preg_match($mail_regex, $email))
-			{ 
-				$password=hash('whirlpool', $password);
-				$activation=hash('whirlpool', $email.time());
-				$msg = $this->model->signup($email, $password, $activation);
-			}
+            $password=$_POST['password'];
+            if(strlen($password) < 8)
+                $msg = '<span class="badge badge-danger">Password must consist at least of 8 chars</span>';
+            else
+            {
+                $mail_regex = '/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/';
+                if(preg_match($mail_regex, $email))
+                { 
+                    $password=hash('whirlpool', $password);
+                    $activation=hash('whirlpool', $email.time());
+                    $msg = $this->model->signup($email, $password, $activation);
+                }
+            }
 		}
 		echo $msg;
     }
@@ -87,5 +92,17 @@ class Controller_User extends Controller
 			}
 		}
 		echo $msg;
+    }
+
+    function action_loggedin()
+    {
+        if (isset($_SESSION["session_username"]))
+        {
+            echo '1';
+        }
+        else
+        {
+            echo '0';
+        }
     }
 }

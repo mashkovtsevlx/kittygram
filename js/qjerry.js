@@ -23,6 +23,10 @@ qJerry.prototype.toggleClass = function (name, selector) {
     this.element.classList.toggle(name);
 }
 
+qJerry.prototype.remove = function () {
+    this.element.parentNode.removeChild(this.element);
+}
+
 qJerry.prototype.outerHeight = function (cond) {
     if (cond) {
         var height = this.element.offsetHeight;

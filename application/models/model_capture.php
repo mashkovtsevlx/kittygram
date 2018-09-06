@@ -160,6 +160,26 @@ class Model_Capture extends Model
         }
     }
 
+    public function delete($user, $id)
+    {
+        $db = Db::getInstance();
+        $query = $db->prepare("SELECT id FROM users WHERE email = :user");
+        $query->execute(array(':user' => $user));
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        $query = $db->prepare("SELECT id, name FROM photos WHERE id = :photo AND user_id = :user");
+        $query->execute(array(':photo' => $id, ':user' => $user['id']));
+        if ($query->rowCount() > 0) {
+            $photo = $query->fetch(PDO::FETCH_ASSOC);
+            $query = $db->prepare("DELETE FROM photos WHERE id = :photo");
+            $query->execute(array(':photo' => $id));
+            if (file_exists("upload/userimage/" . $photo['name']))
+                unlink("upload/userimage/" . $photo['name']);
+            return '1';
+        } else {
+            return '0';
+        }
+    }
+
     public function makemain($user, $id)
     {
         $db = Db::getInstance();
