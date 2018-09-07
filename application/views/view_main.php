@@ -3,6 +3,8 @@
     $num++;
     file_put_contents("num.txt", $num);
 ?>
+<div class="debugging-mobile" style="position: fixed; top: 0; left: 0; width: 100%; height: auto; background: white;
+color: black;"></div>
 <div class="container" onload="load_start()">
     <main class="content" style="width: 100%">
         <div id="load_data"></div>

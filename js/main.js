@@ -38,7 +38,9 @@ function load_data(limit, start) {
 }
 load_data(limit, start);
 window.onscroll = function () {
-    if (document.documentElement.scrollTop + document.documentElement.offsetHeight > $("#load_data").outerHeight() && activated == false) {
+    //$('.debugging-mobile').element.innerHTML = window.scrollY + ' ' + document.documentElement.scrollTop + ' ' + document.documentElement.offsetHeight + ' ' + $("#load_data").outerHeight() + ' ' + activated;
+    //console.log(document.documentElement.scrollTop);
+    if (window.scrollY + document.documentElement.offsetHeight > $("#load_data").outerHeight() && activated == false) {
         activated = true;
         start = start + limit;
         setTimeout(function () {
