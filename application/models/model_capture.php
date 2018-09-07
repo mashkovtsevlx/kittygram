@@ -1,5 +1,4 @@
 <?php
-
 class Model_Capture extends Model
 {
     public $page;
@@ -7,12 +6,10 @@ class Model_Capture extends Model
     {
         $this->page = $page;
     }
-
     private function imageflip(&$image, $x = 0, $y = 0, $width = null, $height = null)
     {
         if ($width  < 1) $width  = imagesx($image);
         if ($height < 1) $height = imagesy($image);
-        // Truecolor provides better results, if possible.
         if (function_exists('imageistruecolor') && imageistruecolor($image))
         {
             $tmp = imagecreatetruecolor(1, $height);
@@ -24,11 +21,8 @@ class Model_Capture extends Model
         $x2 = $x + $width - 1;
         for ($i = (int) floor(($width - 1) / 2); $i >= 0; $i--)
         {
-            // Backup right stripe.
             imagecopy($tmp,   $image, 0,        0,  $x2 - $i, $y, 1, $height);
-            // Copy left stripe to the right.
             imagecopy($image, $image, $x2 - $i, $y, $x + $i,  $y, 1, $height);
-            // Copy backuped right stripe to the left.
             imagecopy($image, $tmp,   $x + $i,  $y, 0,        0,  1, $height);
         }
         imagedestroy($tmp);
@@ -124,7 +118,6 @@ class Model_Capture extends Model
             return NULL;
         }
     }
-
     public function comment($user, $id, $comment)
     {
         $db = Db::getInstance();
@@ -140,7 +133,6 @@ class Model_Capture extends Model
         Send_Mail($to,$subject,$body);
         return $user['username'];
     }
-
     public function like($user, $id)
     {
         $db = Db::getInstance();
@@ -159,7 +151,6 @@ class Model_Capture extends Model
             return '1';
         }
     }
-
     public function delete($user, $id)
     {
         $db = Db::getInstance();
@@ -179,7 +170,6 @@ class Model_Capture extends Model
             return '0';
         }
     }
-
     public function makemain($user, $id)
     {
         $db = Db::getInstance();

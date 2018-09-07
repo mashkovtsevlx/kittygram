@@ -1,14 +1,11 @@
 <?php
-
 class Controller_User extends Controller
 {
-
 	function __construct()
 	{
         $this->model = new Model_User();
         $this->view = new View();
     }
-    
     function action_login()
     {
         $msg = '<span class="badge badge-danger">Wrong credentials. Please, try again</span>';
@@ -24,14 +21,11 @@ class Controller_User extends Controller
         }
         echo $msg;
     }
-
 	function action_logout()
 	{
 		session_start();
 		session_destroy();
     }
-    
-
 	function action_signup()
 	{
 		$msg = '<span class="badge badge-danger">Please, check your credentials and try again<span>';
@@ -54,7 +48,6 @@ class Controller_User extends Controller
 		}
 		echo $msg;
     }
-
     function action_forgot()
 	{
 		$msg = '<span class="badge badge-danger">Please, check your credentials and try again<span>';
@@ -74,7 +67,6 @@ class Controller_User extends Controller
 		}
 		echo $msg;
     }
-
     function action_activation_forgot() {
         if(!empty($_GET['code']) && isset($_GET['code']))
         {
@@ -87,7 +79,6 @@ class Controller_User extends Controller
             Route::ErrorPage404();
         }
     }
-    
     function action_activation()
     {
         if(!empty($_GET['code']) && isset($_GET['code']))
@@ -101,7 +92,6 @@ class Controller_User extends Controller
             Route::ErrorPage404();
         }
     }
-
     function action_settings()
 	{
         $msg = '<span class="badge badge-danger">Please, check your credentials and try again<span>';
@@ -126,7 +116,6 @@ class Controller_User extends Controller
 		}
 		echo $msg;
     }
-
     function action_loggedin()
     {
         if (isset($_SESSION["session_username"]))

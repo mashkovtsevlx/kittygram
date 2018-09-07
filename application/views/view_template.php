@@ -34,7 +34,6 @@
     <link rel="mask-icon" href="/images/ico/favicon.svg" color="#262626">
     <link rel="shortcut icon" type="image/x-icon" href="/images/ico/favicon.ico">
 </head>
-
 <body>
 <script type="text/javascript" src="/js/qjerry.js?v=1.0.<?php echo $num ?>"></script>
 <div id="modal" class="hidden">
@@ -168,9 +167,7 @@
         </div>
     </div>
 </div>
-
 <div class="wrapper">
-
 	<header class="header">
         <div class="menu">
             <div class="header_stack">
@@ -183,14 +180,10 @@
             </div>
         </div>
 	</header><!-- .header-->
-
 	<div class="middle">
         <?php include 'application/views/'.$content_view; ?>
-
     </div><!-- .middle-->
-
 </div><!-- .wrapper -->
-
 <footer class="footer">
     <button class="core_menu"><a href="/"><img src="/images/ico/home.png" alt="Home" title="Home" /></a></button>
 <?php

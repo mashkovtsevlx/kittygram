@@ -9,8 +9,6 @@ color: black;"></div>
     <main class="content" style="width: 100%">
         <div id="load_data"></div>
         <div id="load_data_message"></div>
-
     </main>
-
 </div>
 <script type="text/javascript" src="/js/main.js?v=1.0.<?php echo $num ?>"></script>

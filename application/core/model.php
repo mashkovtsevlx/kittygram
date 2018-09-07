@@ -1,11 +1,6 @@
 <?php
-
-
-
     class Model
-
     {
-
         public function getUserById($id)
         {
             $db = Db::getInstance();
@@ -14,7 +9,6 @@
             $result = $query->fetch(PDO::FETCH_ASSOC);
             return ($result);
         }
-
         public function getUserByPhotoId($id)
         {
             $db = Db::getInstance();
@@ -24,7 +18,6 @@
             $result = $this->getUserById($user['user_id']);
             return($result);
         }
-
         public function user_info($email)
         {
             $db = Db::getInstance();
@@ -38,4 +31,3 @@
         }
     }
 ?>
-

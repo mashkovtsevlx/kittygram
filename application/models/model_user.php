@@ -1,20 +1,16 @@
 <?php
-
 class Model_User extends Model
 {
     public $page;
-
     public function __construct($page = null)
     {
         $this->page = $page;
     }
-
     public function login($email, $password)
     {
         $db = Db::getInstance();
         $query = $db->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
         $query->execute(array(':email' => $email, ':password' => $password));
-
         if ($query->rowCount() > 0)
         {
             $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -32,7 +28,6 @@ class Model_User extends Model
         else
             return '<span class="badge badge-danger">Login/Password combo not found. Please, try again</span>';
     }
-
     public function signup($email, $password, $activation)
     {
         $db = Db::getInstance();
@@ -45,13 +40,11 @@ class Model_User extends Model
             $to=$email;
             $subject="Email Confirmation";
             $body='Hi! <br/> <br/> Please, confirm your email using a link below <br/> <br/> <a href="kittygram.pp.ua/user/activation/?code='.$activation.'">kittygram.pp.ua/user/activation/?code='.$activation.'</a>';
-            
             Send_Mail($to,$subject,$body);
             return '<span class="badge badge-success">Sucessfully signed up. Please, check your email</span>';  
         }
         return '<span class="badge badge-danger">This email is already registered</span>';
     }
-
     public function forgot($email, $password, $activation)
     {
         $db = Db::getInstance();
@@ -64,13 +57,11 @@ class Model_User extends Model
             $to=$email;
             $subject="Kittygram password change confirmation";
             $body='Hi! <br/> <br/>Please, confirm your password change using a link below <br/> <br/> <a href="kittygram.pp.ua/user/activation_forgot/?code='.$activation.'">kittygram.pp.ua/activation_forgot/?code='.$activation.'</a>';
-            
             Send_Mail($to,$subject,$body);
             return '<span class="badge badge-success">Sucessfully sent a request. Check your email</span>';  
         }
         return '<span class="badge badge-danger">This user does not exist</span>';
     }
-
     public function activation_forgot($code)
     {
         $db = Db::getInstance();
@@ -96,7 +87,6 @@ class Model_User extends Model
         }
         return "Not valid activation code";
     }
-
     public function activation($code)
     {
         $db = Db::getInstance();
@@ -142,13 +132,11 @@ class Model_User extends Model
                         $to=$email;
                         $subject="Email Confirmation";
                         $body='Hi! <br/> <br/> Please, confirm your email using a link below <br/> <br/> <a href="http://kittygram.pp.ua/user/activation/?code='.$activation.'">kittygram.pp.ua/activation/?code='.$activation.'</a>';
-                        
                         Send_Mail($to,$subject,$body);
                         return '<span class="badge badge-success page-reload">Settings updated. Please, check your email and relogin<br />Page reloads in 3</span>';  
                     }
                     else
                         return '<span class="badge badge-success">Settings saved</span>';
-                    
                 }
                 else
                     return '<span class="badge badge-success">This email already registered</span>';
@@ -159,5 +147,4 @@ class Model_User extends Model
         return '<span class="badge badge-danger">User does not exist</span>';
     }
 }
-
 ?>

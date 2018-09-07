@@ -6,7 +6,6 @@ class Controller_Capture extends Controller
         $this->model = new Model_Capture();
         $this->view = new View();
     }
-
     function action_index()
     {
         if (session_id() == "") {
@@ -20,7 +19,6 @@ class Controller_Capture extends Controller
             header('Location: /');
         }
     }
-
     function action_getmedia()
     {
         if (isset($_SESSION["session_username"])) {
@@ -28,7 +26,6 @@ class Controller_Capture extends Controller
             echo json_encode($res);
         }
     }
-
     function action_save()
     {
         $msg = 'fuck0';
@@ -62,8 +59,6 @@ class Controller_Capture extends Controller
         }
         echo json_encode($result);
     }
-
-
     function action_comment()
     {
         if (isset($_SESSION["session_username"]) && isset($_POST) && isset($_POST['id']) && isset($_POST['comment']) && $_POST['comment'] != "") {
@@ -74,7 +69,6 @@ class Controller_Capture extends Controller
                 echo '{"user": "'.$_SESSION["session_username"].'", "comment": "'.htmlspecialchars($_POST['comment']).'"}';
         }
     }
-    
     function action_like()
     {
         if (isset($_SESSION["session_username"]) && isset($_POST) && isset($_POST['id'])) {
@@ -84,7 +78,6 @@ class Controller_Capture extends Controller
             echo '0';
         }
     }
-
     function action_delete()
     {
         if (isset($_SESSION["session_username"]) && isset($_POST) && isset($_POST['id'])) {
@@ -94,7 +87,6 @@ class Controller_Capture extends Controller
             echo '0';
         }
     }
-
     function action_makemain()
     {
         if (isset($_SESSION["session_username"]) && isset($_POST) && isset($_POST['id'])) {
@@ -104,6 +96,5 @@ class Controller_Capture extends Controller
             echo '0';
         }
     }
-
 }
 ?>

@@ -6,7 +6,6 @@ class Model_Main extends Model
     {
         $this->page = $page;
     }
-
     public function loaddata($user, $limit, $start)
     {
         $db = Db::getInstance();
@@ -75,11 +74,5 @@ class Model_Main extends Model
         $complete['data'] = $result;
         echo(json_encode($complete));
     }
-
-
 }
-
-
-
 ?>
-

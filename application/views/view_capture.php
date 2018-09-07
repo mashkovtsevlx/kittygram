@@ -7,7 +7,6 @@ $masks_list = scandir($masks_dir);
 array_shift($masks_list);
 array_shift($masks_list);
 ?>
-
 <div class="masks">
     <div class="masks-none" onclick="deselect_mask()">None</div>
     <?php
@@ -19,10 +18,8 @@ array_shift($masks_list);
 </div>
 <img id="selected_mask" src="" style="display: none" data-val="0" />
 <video id="vid" autoplay="" muted="" playsinline=""></video>
-
 <img class="img" style="display: none"/>
 <img id="manualimg" />
-
 <input type="file" id="manual" name="manual" accept="image/*" />
 <div class="myphotos">
     <?php
