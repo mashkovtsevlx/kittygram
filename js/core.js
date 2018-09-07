@@ -120,6 +120,7 @@ function send_comment(id) {
     var data = {};
     data['id'] = id;
     data['comment'] = $('textarea[data-val="' + id + '"]').val();
+    $('textarea[data-val="' + id + '"]').val(' ');
     $('.myphotos').ajax('POST', '/capture/comment', data,
         function (request) {
             var resp = JSON.parse(request.responseText.trim());

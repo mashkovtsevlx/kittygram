@@ -1,4 +1,4 @@
-var limit = 7;
+var limit = 6;
 var start = 0;
 var activated = false;
 var counter = 1;
