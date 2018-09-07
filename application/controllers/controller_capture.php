@@ -67,11 +67,11 @@ class Controller_Capture extends Controller
     function action_comment()
     {
         if (isset($_SESSION["session_username"]) && isset($_POST) && isset($_POST['id']) && isset($_POST['comment']) && $_POST['comment'] != "") {
-            $user = $this->model->comment($_SESSION["session_username"], $_POST['id'], $_POST['comment']);
+            $user = $this->model->comment($_SESSION["session_username"], $_POST['id'], htmlspecialchars($_POST['comment']));
             if (isset($user) && $user != "")
-                echo $user;
+                echo '{"user": "'.$user.'", "comment": "'.htmlspecialchars($_POST['comment']).'"}';
             else
-                echo $_SESSION["session_username"];
+                echo '{"user": "'.$_SESSION["session_username"].'", "comment": "'.htmlspecialchars($_POST['comment']).'"}';
         }
     }
     

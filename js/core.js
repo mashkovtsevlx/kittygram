@@ -122,8 +122,8 @@ function send_comment(id) {
     data['comment'] = $('textarea[data-val="' + id + '"]').val();
     $('.myphotos').ajax('POST', '/capture/comment', data,
         function (request) {
-            var resp = request.responseText;
-            $('.post[data-val="' + id + '"] .post-comments').append('<div class="comment"><span class="comment-author">' + resp + ':</span><span class="comment-text">' + data['comment'] + '</span></div>');
+            var resp = JSON.parse(request.responseText.trim());
+            $('.post[data-val="' + id + '"] .post-comments').append('<div class="comment"><span class="comment-author">' + resp['user'] + ':</span><span class="comment-text">' + resp['comment'] + '</span></div>');
             document.body.style.cursor = 'default';
         }, 1, 1, true);
 }

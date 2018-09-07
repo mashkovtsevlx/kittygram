@@ -111,7 +111,7 @@ class Controller_User extends Controller
 		{
 			$email = $_POST['email'];
             $password = $_POST['password'];
-            $username = $_POST['username'];
+            $username = htmlspecialchars($_POST['username']);
             $oldemail = $_SESSION["session_username"];
             $new_password = $_POST['new_password'];
             $notifications = $_POST['notifications'];
