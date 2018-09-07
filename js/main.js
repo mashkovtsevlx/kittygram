@@ -1,6 +1,7 @@
 var limit = 7;
 var start = 0;
 var activated = false;
+var counter = 1;
 
 function load_data(limit, start) {
     var data = {};
@@ -14,6 +15,7 @@ function load_data(limit, start) {
             var comments = '';
             document.body.style.cursor = 'default';
             response['data'].forEach(function (photo) {
+                console.log('counter: ', counter, ' image: ', photo['name']['id']);
                 if (photo['comments'])
                 {
                     photo['comments'].forEach(function (comment) {
@@ -25,6 +27,10 @@ function load_data(limit, start) {
                 else
                     $('#load_data').element.innerHTML = $('#load_data').element.innerHTML + '<div class="post post-main" data-val="' + photo['name']['id'] + '"><div class="post-header"><img src="/upload/userimage/' + photo['userpic'] + '?v=' + Math.random() * (30000 - 0) + 0 + '" /><span>' + photo['username'] + '</span></div><img class="main" src="/upload/userimage/' + photo['name']['name'] + '?v=' + Math.random() * (30000 - 0) + 0 + '" /><div class="post-comments">' + comments + '</div></div>';
                 comments = '';
+                if (counter % 3 == 0){
+                    $('#load_data').append('<div class="clearline"></div>');
+                }
+                counter++;
             });
             activated = false;
         }, 1, 1, true);

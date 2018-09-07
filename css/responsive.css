@@ -266,6 +266,10 @@
         margin: 10px 0;
     }
 
+    .clearline {
+        display: none;
+    }
+
 
 
 }
@@ -318,6 +322,13 @@
 
         max-height: 80vh;
 
+    }
+
+    .clearline {
+        display: block;
+        width: 100%;
+        height: 1px;
+        float: left;
     }
 
 }
