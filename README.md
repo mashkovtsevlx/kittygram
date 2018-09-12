@@ -1,4 +1,4 @@
-# Kittygram - 42 school Camagru project
+# Kittygram - 42 school Camagru project @omashkov
 124/125 :)
 
 https://kittygram.pp.ua
