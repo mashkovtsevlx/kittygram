@@ -1,4 +1,4 @@
-# kittygram
+# Kittygram - 42 school Camagru project
 Super secret project
 
 https://kittygram.pp.ua
