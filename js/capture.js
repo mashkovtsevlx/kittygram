@@ -21,7 +21,6 @@ navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
     $('#manual').css('display', 'block');
     videoavailable = false;
 });
-
 $('#manual').element.addEventListener('change', function() {
     var file = $('#manual').element.files[0];
     var reader = new FileReader();
@@ -37,7 +36,6 @@ $('#manual').element.addEventListener('change', function() {
                 manualimageready = true;
             else
                 manualimageready = false;
-    
             var context;
             canvas = canvas || document.createElement('canvas');
             canvas.width = basewidth;
@@ -50,7 +48,6 @@ $('#manual').element.addEventListener('change', function() {
         reader.readAsDataURL(file);
     }
 });
-
 video.addEventListener('click', function () {
     if (facingMode == "user") {
         $("#vid").css('-webkit-transform', 'scaleX(1)');
@@ -71,13 +68,11 @@ video.addEventListener('click', function () {
         video.srcObject = stream;
     });
 });
-
 $(".take_shoot").element.addEventListener('click', function () {
     $('.take_shoot').css('background-color', '#ff8080');
     var data = {};
     if ($('#selected_mask').attr('data-val') === '1') {
         data['mask'] = $('#selected_mask').element.src;
-        
         data['maskheight'] = videoavailable ? $('#selected_mask').outerHeight() : $('#selected_mask').outerHeight() / $('#manualimg').outerHeight() * 400;
         console.log(data['maskheight']);
     }
@@ -104,7 +99,6 @@ $(".take_shoot").element.addEventListener('click', function () {
     } else if (manualimageready) {
         var file = $('#manual').element.files[0];
         var reader = new FileReader();
-
         reader.addEventListener("load", function () {
             $(".img").element.setAttribute('src', reader.result);
             data['src'] = canvas.toDataURL("image/png");
@@ -117,7 +111,6 @@ $(".take_shoot").element.addEventListener('click', function () {
                     document.body.style.cursor = 'default';
                 }, 1, 1, true);
         }, false);
-
         if (file) {
             reader.readAsDataURL(file);
         }
@@ -128,7 +121,6 @@ $(".take_shoot").element.addEventListener('click', function () {
         $('.take_shoot').css('background-color', 'orange');
     }
 });
-
 function select_mask(name) {
     mask = $('#selected_mask');
     vid = videoavailable ? $('#vid') : $('#manualimg');
@@ -142,7 +134,6 @@ function select_mask(name) {
         mask.css('top', (vid.outerHeight() / 2 - mask.outerHeight() / 2 + gap) + 'px');
     }, 50);
 }
-
 function deselect_mask() {
     mask.attr('data-val', '0');
     $('#selected_mask').css('display', 'none');

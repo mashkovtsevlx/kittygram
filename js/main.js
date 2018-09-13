@@ -2,7 +2,6 @@ var limit = 6;
 var start = 0;
 var activated = false;
 var counter = 1;
-
 function load_data(limit, start) {
     var data = {};
     var loggedin = '0';

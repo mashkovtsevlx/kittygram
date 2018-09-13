@@ -1,119 +1,119 @@
-@media screen and (max-width: 690px) {
-    .header {
-        height: 17vw;
-        padding: 0;
-        margin-bottom: 0;
-    }
-    .logo {
-        height: 17vw;
-        margin-left: 3vw;
-    }
-    .menu__icon {
-        display: block;
-        background: url("/images/menu.png");
-        width: 11vw;
-        height: 11vw;
-        margin: 3vw;
-        -moz-background-size: 100%;
-        -webkit-background-size: 100%;
-        -o-background-size: 100%;
-        background-size: 100%;
-        float: right;
-    }
-    .menu__links {
-        position: fixed;
-        display: none;
-        top: 0;
-        right: 0;
-        left: 0;
-        margin-top: 17vw;
-        background-color: rgba(0, 0, 0, 0.8);
-        z-index: 1000;
-        overflow: auto;
-    }
-    .menu__links-item {
-        display: block;
-        padding: 10px 0;
-        text-align: center;
-        font-size: 6vw;
-        line-height: 9vw;
-        color: #ffffff;
-        box-shadow: none;
-        border-radius: 0px;
-        background-color: transparent;
-        margin-left: 0;
-    }
-    /* Modal
-  -----------------------------------------------------------------------------*/
-    #modal {
-        width: 98%;
-        left: 1%;
-        top: 1%;
-    }
-    .masks {
-        width: 100%;
-    }
-    /* Capture
-  -----------------------------------------------------------------------------*/
-    #vid {
-        width: 100%;
-        margin-top: 100px;
-        float: left;
-    }
-    #manualimg {
-        width: 100%;
-        margin-top: 23px;
-        float: left;
-    }
-    #can {
-        width: 100%;
-        display: none;
-    }
-    .myphotos {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        overflow-y: scroll;
-        /*height: calc(100% - 51px);*/
-        margin-bottom: 40px;
-        display: none;
-    }
-    .post-main {
-        width: 100%;
-        margin: 10px 0;
-    }
-    .clearline {
-        display: none;
-    }
-}
-@media screen and (min-width: 691px) {
-    .masks {
-        width: 54%;
-    }
-    #vid {
-        width: 45%;
-        float: left;
-        margin-top: 125px;
-    }
-    #manualimg {
-        width: 45%;
-        float: left;
-        margin-top: 25px;
-    }
-    .user_profile {
-        display: none !important;
-    }
-    .myphotos {
-        float: left;
-        width: 40%;
-        overflow-y: scroll;
-        margin-left: 12%;
-        max-height: 80vh;
-    }
-    .clearline {
-        display: block;
-        width: 100%;
-        height: 1px;
-        float: left;
-    }
+@media screen and (max-width: 690px) {
+    .header {
+        height: 17vw;
+        padding: 0;
+        margin-bottom: 0;
+    }
+    .logo {
+        height: 17vw;
+        margin-left: 3vw;
+    }
+    .menu__icon {
+        display: block;
+        background: url("/images/menu.png");
+        width: 11vw;
+        height: 11vw;
+        margin: 3vw;
+        -moz-background-size: 100%;
+        -webkit-background-size: 100%;
+        -o-background-size: 100%;
+        background-size: 100%;
+        float: right;
+    }
+    .menu__links {
+        position: fixed;
+        display: none;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin-top: 17vw;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        overflow: auto;
+    }
+    .menu__links-item {
+        display: block;
+        padding: 10px 0;
+        text-align: center;
+        font-size: 6vw;
+        line-height: 9vw;
+        color: #ffffff;
+        box-shadow: none;
+        border-radius: 0px;
+        background-color: transparent;
+        margin-left: 0;
+    }
+    /* Modal
+  -----------------------------------------------------------------------------*/
+    #modal {
+        width: 98%;
+        left: 1%;
+        top: 1%;
+    }
+    .masks {
+        width: 100%;
+    }
+    /* Capture
+  -----------------------------------------------------------------------------*/
+    #vid {
+        width: 100%;
+        margin-top: 100px;
+        float: left;
+    }
+    #manualimg {
+        width: 100%;
+        margin-top: 23px;
+        float: left;
+    }
+    #can {
+        width: 100%;
+        display: none;
+    }
+    .myphotos {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        overflow-y: scroll;
+        /*height: calc(100% - 51px);*/
+        margin-bottom: 40px;
+        display: none;
+    }
+    .post-main {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .clearline {
+        display: none;
+    }
+}
+@media screen and (min-width: 691px) {
+    .masks {
+        width: 54%;
+    }
+    #vid {
+        width: 45%;
+        float: left;
+        margin-top: 125px;
+    }
+    #manualimg {
+        width: 45%;
+        float: left;
+        margin-top: 25px;
+    }
+    .user_profile {
+        display: none !important;
+    }
+    .myphotos {
+        float: left;
+        width: 40%;
+        overflow-y: scroll;
+        margin-left: 12%;
+        max-height: 80vh;
+    }
+    .clearline {
+        display: block;
+        width: 100%;
+        height: 1px;
+        float: left;
+    }
 }
