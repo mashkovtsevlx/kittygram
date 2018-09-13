@@ -1,4 +1,4 @@
-# Kittygram - Camagru 42 school proj
+# Kittygram - Camagru 42 school project
 https://kittygram.pp.ua
 
 Testing purpose only! Please, leave a comment if you found some bug.
