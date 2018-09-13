@@ -10,7 +10,7 @@ class Controller_User extends Controller
     {
         $msg = '<span class="badge badge-danger">Wrong credentials. Please, try again</span>';
         if(isset($_SESSION["session_username"])){
-            $msg = '12345';
+            $msg = 'Already logged in';
         }
         else if(isset($_POST["email"])){
             if(!empty($_POST['email']) && !empty($_POST['password'])) {

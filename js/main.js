@@ -15,7 +15,6 @@ function load_data(limit, start) {
             var comments = '';
             document.body.style.cursor = 'default';
             response['data'].forEach(function (photo) {
-                console.log('counter: ', counter, ' image: ', photo['name']['id']);
                 if (photo['comments'])
                 {
                     photo['comments'].forEach(function (comment) {
@@ -38,8 +37,6 @@ function load_data(limit, start) {
 }
 load_data(limit, start);
 window.onscroll = function () {
-    //$('.debugging-mobile').element.innerHTML = window.scrollY + ' ' + document.documentElement.scrollTop + ' ' + document.documentElement.offsetHeight + ' ' + $("#load_data").outerHeight() + ' ' + activated;
-    //console.log(document.documentElement.scrollTop);
     if (window.scrollY + document.documentElement.offsetHeight > $("#load_data").outerHeight() && activated == false) {
         activated = true;
         start = start + limit;
