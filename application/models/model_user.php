@@ -22,6 +22,8 @@ class Model_User extends Model
                     session_start();
                 }
                 $_SESSION['session_username']=$email;
+                $query = $db->prepare("INSERT INTO logs (user, action, created_at) VALUES (:user, :action, NOW())");
+                $query->execute(array(':user' => $result['email'], ':action' => 'login'));
                 return '1';
             }
         }
