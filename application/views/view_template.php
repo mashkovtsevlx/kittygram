@@ -1,7 +1,7 @@
 <?php
     $menu = array();
     if(isset($_SESSION['session_username'])) {
-        $menu[] = '<a class="menu__links-item" href="/capture">Make a photo</a>';
+        $menu[] = '<a class="menu__links-item" href="/capture">Make a photoo</a>';
         $menu[] = '<a class="menu__links-item" onclick="$(\'.modal-settings\').toggleModal()">Settings</a>';
         $menu[] = '<a class="menu__links-item" onclick="logout()">Log Out</a>';
     }
