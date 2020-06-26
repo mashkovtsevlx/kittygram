@@ -132,7 +132,7 @@ function select_mask(name) {
     setTimeout(() => {
         mask.css('left', (vid.outerWidth() / 2 - mask.outerWidth() / 2) + 'px');
         mask.css('top', (vid.outerHeight() / 2 - mask.outerHeight() / 2 + gap) + 'px');
-    }, 50);
+    }, 100);
 }
 function deselect_mask() {
     mask.attr('data-val', '0');
