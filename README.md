@@ -58,6 +58,15 @@ CREATE TABLE `users` (
   `notifications` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `logs` (
+  `id` int(10) NOT NULL,
+  `user` varchar(100) NOT NULL,
+  `action` varchar(200) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_idx` (`user_id`),
@@ -78,6 +87,9 @@ ALTER TABLE `photos`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `comments`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
@@ -92,6 +104,9 @@ ALTER TABLE `photos`
 
 ALTER TABLE `users`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+ALTER TABLE `logs`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
