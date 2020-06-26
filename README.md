@@ -1,5 +1,5 @@
 # Kittygram - Camagru 42 school project
-https://kittygram.pp.ua
+https://kittygram.inso.codes
 
 Testing purpose only! Please, leave a comment if you found some bug.
 

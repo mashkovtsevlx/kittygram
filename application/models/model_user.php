@@ -41,7 +41,7 @@ class Model_User extends Model
             $user_query->execute(array(':email' => $email, ':password' => $password, ':activation' => $activation));
             $to=$email;
             $subject="Email Confirmation";
-            $body='Hi! <br/> <br/> Please, confirm your email using a link below <br/> <br/> <a href="kittygram.pp.ua/user/activation/?code='.$activation.'">kittygram.pp.ua/user/activation/?code='.$activation.'</a>';
+            $body='Hi! <br/> <br/> Please, confirm your email using a link below <br/> <br/> <a href="https://kittygram.inso.codes/user/activation/?code='.$activation.'">https://kittygram.inso.codes/user/activation/?code='.$activation.'</a>';
             Send_Mail($to,$subject,$body);
             return '<span class="badge badge-success">Sucessfully signed up. Please, check your email</span>';  
         }
@@ -58,7 +58,7 @@ class Model_User extends Model
             $user_query->execute(array(':email' => $email, ':password' => $password, ':activation' => $activation));
             $to=$email;
             $subject="Kittygram password change confirmation";
-            $body='Hi! <br/> <br/>Please, confirm your password change using a link below <br/> <br/> <a href="kittygram.pp.ua/user/activation_forgot/?code='.$activation.'">kittygram.pp.ua/activation_forgot/?code='.$activation.'</a>';
+            $body='Hi! <br/> <br/>Please, confirm your password change using a link below <br/> <br/> <a href="https://kittygram.inso.codes/user/activation_forgot/?code='.$activation.'">https://kittygram.inso.codes/activation_forgot/?code='.$activation.'</a>';
             Send_Mail($to,$subject,$body);
             return '<span class="badge badge-success">Sucessfully sent a request. Check your email</span>';  
         }
@@ -133,7 +133,7 @@ class Model_User extends Model
                     {
                         $to=$email;
                         $subject="Email Confirmation";
-                        $body='Hi! <br/> <br/> Please, confirm your email using a link below <br/> <br/> <a href="http://kittygram.pp.ua/user/activation/?code='.$activation.'">kittygram.pp.ua/activation/?code='.$activation.'</a>';
+                        $body='Hi! <br/> <br/> Please, confirm your email using a link below <br/> <br/> <a href="https://kittygram.inso.codes/user/activation/?code='.$activation.'">https://kittygram.inso.codes/activation/?code='.$activation.'</a>';
                         Send_Mail($to,$subject,$body);
                         return '<span class="badge badge-success page-reload">Settings updated. Please, check your email and relogin<br />Page reloads in 3</span>';  
                     }
